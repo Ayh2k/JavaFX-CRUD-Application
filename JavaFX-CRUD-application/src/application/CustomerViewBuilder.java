@@ -41,7 +41,7 @@ public class CustomerViewBuilder implements Builder<Region> {
     }
     
     private Node accountBox() {
-    	return new HBox(6,promptLabel("Account #:"), boundTextField(model.customerNameProperty()));
+    	return new HBox(6,promptLabel("Account #:"), boundTextField(model.accountNumberProperty()));
 	}
 
 	private Node nameBox() {
@@ -57,6 +57,8 @@ public class CustomerViewBuilder implements Builder<Region> {
     
     private Node createButtons() {
     	Button btnSave = new Button("Save");
+    	
+    	// Lambda function that calls the saveHandler's run() method when the button is clicked.
     	btnSave.setOnAction(evt -> saveHandler.run());
     	
     	HBox results = new HBox(10,btnSave);
@@ -69,15 +71,15 @@ public class CustomerViewBuilder implements Builder<Region> {
 	    return styledLabel(contents, "prompt-label");
 	    
 	}
-	 
-	private Node headingLabel(String contents) {
-		return styledLabel(contents, "heading-label");
-		
-	}
 	
 	private Node styledLabel(String contents, String styleClass) {
         Label label = new Label(contents);
         label.getStyleClass().add(styleClass);
         return label;
     }
+	
+	private Node headingLabel(String contents) {
+		return styledLabel(contents, "heading-label");
+		
+	}
 }
